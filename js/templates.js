@@ -1,6 +1,11 @@
 // Email Signature Templates
 // All templates use inline styles and tables for maximum email client compatibility
 
+// Helper: Get logo source (URL preferred for email, base64 fallback for preview)
+function getLogoSrc(data) {
+    return data.logoUrl || data.logoData || null;
+}
+
 /**
  * Template 1: Logo Left + Two Columns
  * Logo on left, name/title in middle, contact info on right
@@ -12,12 +17,13 @@ function generateTemplate1(data) {
     const socialIcons = generateSocialIconsHtml(data, 20);
     const legalFooter = data.showLegalFooter ? generateLegalFooter(data) : '';
     const disclaimer = data.showDisclaimer && data.disclaimer ? generateDisclaimer(data.disclaimer) : '';
+    const logoSrc = getLogoSrc(data);
 
     return `
 <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.4; color: #333333; max-width: 600px;">
     <tr>
         <td style="vertical-align: top; padding-right: 15px;">
-            ${data.logoData ? `<img src="${data.logoData}" alt="Logo" width="${logoSize}" height="${logoSize}" style="${logoStyle}">` : ''}
+            ${logoSrc ? `<img src="${logoSrc}" alt="Logo" width="${logoSize}" height="${logoSize}" style="${logoStyle}">` : ''}
             ${socialIcons ? `<div style="margin-top: 10px;">${socialIcons}</div>` : ''}
         </td>
         <td style="vertical-align: top; padding-right: 20px; border-right: 2px solid ${accentColor};">
@@ -62,6 +68,7 @@ function generateTemplate2(data) {
     const socialIcons = generateSocialIconsHtml(data, 20);
     const legalFooter = data.showLegalFooter ? generateLegalFooter(data) : '';
     const disclaimer = data.showDisclaimer && data.disclaimer ? generateDisclaimer(data.disclaimer) : '';
+    const logoSrc = getLogoSrc(data);
 
     return `
 <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.4; color: #333333; max-width: 600px;">
@@ -110,7 +117,7 @@ function generateTemplate2(data) {
             </table>
         </td>
         <td style="vertical-align: top;">
-            ${data.logoData ? `<img src="${data.logoData}" alt="Logo" width="${logoSize}" height="${logoSize}" style="${logoStyle}">` : ''}
+            ${logoSrc ? `<img src="${logoSrc}" alt="Logo" width="${logoSize}" height="${logoSize}" style="${logoStyle}">` : ''}
         </td>
     </tr>
     ${legalFooter ? `<tr><td colspan="2" style="padding-top: 15px;">${legalFooter}</td></tr>` : ''}
@@ -130,12 +137,13 @@ function generateTemplate3(data) {
     const socialIcons = generateSocialIconsHtml(data, 20);
     const legalFooter = data.showLegalFooter ? generateLegalFooter(data) : '';
     const disclaimer = data.showDisclaimer && data.disclaimer ? generateDisclaimer(data.disclaimer) : '';
+    const logoSrc = getLogoSrc(data);
 
     return `
 <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.4; color: #333333; max-width: 600px;">
     <tr>
         <td style="vertical-align: top; padding-right: 15px;">
-            ${data.logoData ? `<img src="${data.logoData}" alt="Logo" width="${logoSize}" height="${logoSize}" style="${logoStyle}">` : ''}
+            ${logoSrc ? `<img src="${logoSrc}" alt="Logo" width="${logoSize}" height="${logoSize}" style="${logoStyle}">` : ''}
         </td>
         <td style="vertical-align: top; border-left: 2px solid ${accentColor}; padding-left: 15px;">
             <table cellpadding="0" cellspacing="0" border="0">

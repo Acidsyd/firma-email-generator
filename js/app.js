@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
             disclaimer: form.disclaimer.value,
             showDisclaimer: form.showDisclaimer.checked,
             logoData: logoData,
+            logoUrl: form.logoUrl.value,
             currentTemplate: currentTemplate
         };
         localStorage.setItem('signatureFormData', JSON.stringify(data));
@@ -95,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.instagram) form.instagram.value = data.instagram;
             if (data.facebook) form.facebook.value = data.facebook;
             if (data.disclaimer) form.disclaimer.value = data.disclaimer;
+            if (data.logoUrl) form.logoUrl.value = data.logoUrl;
 
             // Restore checkboxes
             form.showLegalFooter.checked = data.showLegalFooter !== false;
@@ -149,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
             instagram: form.instagram.value,
             facebook: form.facebook.value,
             logoData: logoData,
+            logoUrl: form.logoUrl.value,
             logoShape: form.logoShape.value,
             logoSize: parseInt(form.logoSize.value),
             accentColor: form.accentColor.value,
